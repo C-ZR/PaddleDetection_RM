@@ -1,6 +1,7 @@
 # PaddleDetection_RM
 
 本项目利用PaddleDetection套件开发，能在aistudio上训练和测试，有利于无GPU服务器的开发者学习和使用。
+项目地址：https://aistudio.baidu.com/aistudio/projectdetail/4667046?sUid=55227&shared=1&ts=1665239236531
 
 ## PaddleDetection简介
 
