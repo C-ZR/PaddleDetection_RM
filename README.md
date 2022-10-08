@@ -4,6 +4,8 @@
 
 项目地址：https://aistudio.baidu.com/aistudio/projectdetail/4667046?sUid=55227&shared=1&ts=1665239236531
 
+数据集地址：https://aistudio.baidu.com/aistudio/datasetdetail/166110
+
 ## PaddleDetection简介
 
 PaddleDetection是基于飞桨PaddlePaddle的端到端目标检测套件，提供多种主流目标检测、实例分割、跟踪、关键点检测算法，目前推出多种服务器端和移动端工业级SOTA模型，并集成了模型压缩和跨平台高性能部署能力,能帮助开发者更快更好完成端到端全开发流程。
