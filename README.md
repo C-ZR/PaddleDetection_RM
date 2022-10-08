@@ -25,7 +25,7 @@ PaddleDetection是基于飞桨PaddlePaddle的端到端目标检测套件，提�
 
 ## 识别效果展示
 
-![](out.jpg)
+![out](out.jpg)
 
 
 
