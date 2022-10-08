@@ -1,0 +1,79 @@
+architecture: YOLOv3Poly
+pretrain_weights: https://paddledet.bj.bcebos.com/models/pretrained/MobileNetV3_large_x0_5_pretrained.pdparams
+norm_type: sync_bn
+use_ema: true
+ema_decay: 0.9998
+
+YOLOv3Poly:
+  backbone: MobileNetV3
+  neck: PPYOLOTinyFPN
+  yolo_head: YOLOPolyHead
+  post_process: PolyBBoxPostProcess
+
+MobileNetV3:
+  model_name: large
+  scale: .5
+  with_extra_blocks: false
+  extra_block_filters: []
+  feature_maps: [7, 13, 16]
+
+PPYOLOTinyFPN:
+  detection_block_channels: [160, 128, 96]
+  spp: true
+  drop_block: true
+
+YOLOPolyHead:
+  anchors: [[19, 11], [36, 15], [60, 20], 
+            [72, 44], [94, 41], [156, 54], 
+            [201, 121], [232, 100], [264, 91]]
+  anchor_masks: [[6, 7, 8], [3, 4, 5], [0, 1, 2]]
+  loss: YOLOPolyLoss
+
+YOLOPolyLoss:
+  ignore_thresh: 0.5
+  downsample: [32, 16, 8]
+  label_smooth: false
+  scale_x_y: 1.05
+  iou_loss: IouLoss
+
+IouLoss:
+  loss_weight: 2.5
+  loss_square: true
+
+PolyLoss:
+  loss_weight: 2.5
+  loss_square: true
+
+PolyBBoxPostProcess:
+  decode:
+    name: YOLOPolyBox
+    downsample_ratio: 32
+    clip_bbox: true
+    scale_x_y: 1.05
+  nms:
+    name: MultiClassNMS
+    keep_top_k: 100
+    nms_threshold: 0.1
+    nms_top_k: 1000
+    score_threshold: 0.05
+
+    # name: MultiClassNMS
+    # keep_top_k: -1
+    # score_threshold: 0.05
+    # nms_threshold: 0.1
+    # normalized: False
+
+BBoxPostProcess:
+  decode:
+    name: YOLOBox
+    conf_thresh: 0.005
+    downsample_ratio: 32
+    clip_bbox: true
+    scale_x_y: 1.05
+  nms:
+    name: MultiClassNMS
+    keep_top_k: 100
+    nms_threshold: 0.45
+    nms_top_k: 1000
+    score_threshold: 0.005
+

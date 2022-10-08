@@ -1,0 +1,13 @@
+_BASE_: [
+  '../datasets/polygon_voc.yml',
+  '../runtime.yml',
+  './_base_/ppyolo_tiny_poly.yml',
+  './_base_/optimizer_650e.yml',
+  './_base_/ppyolo_tiny_poly_reader.yml',
+]
+
+snapshot_epoch: 10
+weights: output/ppyolo_tiny_voc_poly/model_final
+
+EvalReader:
+  collate_batch: false

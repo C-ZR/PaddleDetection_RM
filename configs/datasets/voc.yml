@@ -1,0 +1,21 @@
+metric: VOC
+map_type: 11point
+num_classes: 20
+
+TrainDataset:
+  !VOCDataSet
+    dataset_dir: dataset2
+    anno_path: train_list.txt
+    label_list: labels.txt
+    data_fields: ['image', 'gt_bbox', 'gt_class', 'difficult']
+
+EvalDataset:
+  !VOCDataSet
+    dataset_dir: dataset2
+    anno_path: val_list.txt
+    label_list: labels.txt
+    data_fields: ['image', 'gt_bbox', 'gt_class', 'difficult']
+
+TestDataset:
+  !ImageFolder
+    anno_path: dataset2/labels.txt

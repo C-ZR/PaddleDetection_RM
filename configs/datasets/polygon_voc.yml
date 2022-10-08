@@ -1,0 +1,21 @@
+metric: PolyVOC
+map_type: 11point
+num_classes: 20
+
+TrainDataset:
+  !PolyVOCDataSet
+    dataset_dir: dataset
+    anno_path: train_list.txt
+    label_list: labels.txt
+    data_fields: ['image', 'gt_poly', 'gt_class', 'difficult']
+
+EvalDataset:
+  !PolyVOCDataSet
+    dataset_dir: dataset
+    anno_path: val_list.txt
+    label_list: labels.txt
+    data_fields: ['image', 'gt_poly', 'gt_class', 'difficult']
+
+TestDataset:
+  !ImageFolder
+    anno_path: dataset/labels.txt
